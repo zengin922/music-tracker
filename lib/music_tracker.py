@@ -13,4 +13,6 @@ class MusicTracker:
         return self._tracks
 
     def add(self, track):
+        if track == "":
+            raise Exception("Track cannot be empty.")
         self._tracks.append(track)

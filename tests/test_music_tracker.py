@@ -1,3 +1,4 @@
+import pytest
 from lib.music_tracker import MusicTracker
 
 def test_list_tracks_is_empty_initially():
@@ -20,3 +21,9 @@ def test_same_track_twice_is_listed_twice():
     tracker.add("Hey Ya! by OutKast")
     tracker.add("Hey Ya! by OutKast")
     assert tracker.list_tracks() == ["Hey Ya! by OutKast", "Hey Ya! by OutKast"]
+
+def test_adding_empty_track_raises_error():
+    tracker = MusicTracker()
+    with pytest.raises(Exception) as error:
+        tracker.add("")
+    assert str(error.value) == "Track cannot be empty."
